@@ -1,15 +1,15 @@
-const Minter = artifacts.require("Minter");
+const UsdToken = artifacts.require("UsdToken");
 
-contract("Minter", (accounts) => {
-  let minter;
+contract("UsdToken", (accounts) => {
+  let mUsd;
 
   before(async () => {
-    minter = await Minter.deployed();
+    mUsd = await UsdToken.deployed();
   });
 
-  it("1M of minters supplied", async () => {
+  it("1M of mUsds supplied", async () => {
     let balance;
-    balance = await minter.balanceOf(accounts[0]);
+    balance = await mUsd.balanceOf(accounts[0]);
     balance = web3.utils.fromWei(balance, "ether");
 
     assert.equal(balance, "1000000");
@@ -19,12 +19,12 @@ contract("Minter", (accounts) => {
     let amount;
     amount = web3.utils.toWei("1000", "ether");
 
-    await minter.transfer(accounts[1], amount, {
+    await mUsd.transfer(accounts[1], amount, {
       from: accounts[0],
     });
 
     let balance;
-    balance = await minter.balanceOf(accounts[1]);
+    balance = await mUsd.balanceOf(accounts[1]);
     balance = web3.utils.fromWei(balance, "ether");
 
     assert.equal(balance, "1000");
