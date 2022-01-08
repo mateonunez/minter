@@ -11,13 +11,7 @@ module.exports = async (deployer, network, accounts) => {
   await deployer.deploy(UsdToken, 1000000);
   const usdToken = await UsdToken.deployed();
 
-  // Deploy FinterToken contract
+  // // Deploy FinterToken contract
   await deployer.deploy(FinterToken, minterToken.address, usdToken.address);
   const finterToken = await FinterToken.deployed();
-
-  // Transfer all tokens to the FinterToken contract
-  await minterToken.transfer(finterToken.address, 1000000);
-
-  // Transfer mocked USD tokens to investor
-  await usdToken.transfer(accounts[1], 1000000);
 };
