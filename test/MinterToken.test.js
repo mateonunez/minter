@@ -1,10 +1,10 @@
-const Minter = artifacts.require("Minter");
+const MinterToken = artifacts.require("MinterToken");
 
-contract("Minter", (accounts) => {
+contract("MinterToken", (accounts) => {
   let minter;
 
   before(async () => {
-    minter = await Minter.deployed();
+    minter = await MinterToken.deployed();
   });
 
   it("1M of minters supplied", async () => {
